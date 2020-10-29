@@ -21,3 +21,5 @@
 /ylc-app/npm-debug.log*
 /ylc-app/yarn-debug.log*
 /ylc-app/yarn-error.log*
+
+.vscode
