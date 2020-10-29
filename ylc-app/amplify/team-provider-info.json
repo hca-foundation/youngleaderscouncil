@@ -1,0 +1,15 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-ylcapp-dev-173156-authRole",
+      "UnauthRoleArn": "arn:aws:iam::063362920713:role/amplify-ylcapp-dev-173156-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::063362920713:role/amplify-ylcapp-dev-173156-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-ylcapp-dev-173156-deployment",
+      "UnauthRoleName": "amplify-ylcapp-dev-173156-unauthRole",
+      "StackName": "amplify-ylcapp-dev-173156",
+      "StackId": "arn:aws:cloudformation:us-east-1:063362920713:stack/amplify-ylcapp-dev-173156/8feb70e0-1a36-11eb-b714-0ef7f3f34731",
+      "AmplifyAppId": "d2enfsg3uhn24b"
+    }
+  }
+}
