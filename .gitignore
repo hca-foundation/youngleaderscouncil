@@ -1,0 +1,23 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/ylc-app/node_modules
+/ylc-app/.pnp
+/ylc-app/.pnp.js
+
+# testing
+/ylc-app/coverage
+
+# production
+/ylc-app/build
+
+# misc
+/ylc-app/.DS_Store
+/ylc-app/.env.local
+/ylc-app/.env.development.local
+/ylc-app/.env.test.local
+/ylc-app/.env.production.local
+
+/ylc-app/npm-debug.log*
+/ylc-app/yarn-debug.log*
+/ylc-app/yarn-error.log*
