@@ -10,6 +10,11 @@
       "StackName": "amplify-ylcapp-dev-173156",
       "StackId": "arn:aws:cloudformation:us-east-1:063362920713:stack/amplify-ylcapp-dev-173156/8feb70e0-1a36-11eb-b714-0ef7f3f34731",
       "AmplifyAppId": "d2enfsg3uhn24b"
+    },
+    "categories": {
+      "auth": {
+        "ylcapp7ed7733d": {}
+      }
     }
   }
 }

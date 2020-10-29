@@ -1,1 +1,10 @@
-{}
+{
+  "auth": {
+    "ylcapp7ed7733d": {
+      "service": "Cognito",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [],
+      "customAuth": false
+    }
+  }
+}
