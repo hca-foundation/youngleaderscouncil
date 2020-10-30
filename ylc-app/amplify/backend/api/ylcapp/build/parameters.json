@@ -10,5 +10,5 @@
         ]
     },
     "S3DeploymentBucket": "amplify-ylcapp-dev-173156-deployment",
-    "S3DeploymentRootKey": "amplify-appsync-files/0d08f2fc5859af178308028de88cb280bd972fc8"
+    "S3DeploymentRootKey": "amplify-appsync-files/42e1158109302020ed04c4d356ae19750c471324"
 }

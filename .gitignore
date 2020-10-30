@@ -39,3 +39,4 @@
 /ylc-app/amplifytools.xcconfig
 
 .vscode
+package-lock.json

@@ -1,6 +1,7 @@
 import '../App.css';
 import React, { useState, useEffect } from 'react'
 import { Button, Layout } from 'antd'
+import ApplicantTable from '../components/ApplicantTable'
 // import { Amplify, Auth } from 'aws-amplify'
 // import { withAuthenticator } from 'aws-amplify-react'
 import AppHeader from '../components/AppHeader'
@@ -49,7 +50,8 @@ function Profile() {
                     <Button onClick={signOut}>Sign Out</Button>
                 </div>
                 <div className='basic-card'>
-                    <h1>Testing - Admin View</h1>
+                    <h1>Applicant Tracking</h1>
+                    <ApplicantTable/>
                 </div>
             </div>
         </Content>
