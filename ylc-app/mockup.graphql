@@ -1,0 +1,156 @@
+# NOTES:
+#   - need help fixing these relationships between models up
+#   - need help with associating admin/student to aws logins
+
+# Maybe just freetext tags attached to non profit instead?
+# Honestly might be best to ditch tags for the MVP
+# type Tag
+#   @model
+#   # @searchable
+#   # @key(name: "byTag", fields: ["id"])
+#   @auth(
+#     rules: [
+#       { allow: private, operations: [read] }
+#       {
+#         allow: owner, operations: [read, create, delete, update]
+#       }
+#     ]
+#   ) {
+#   id: ID!
+#   label: String!
+# }
+
+type NonProfit
+  @model
+  # @searchable
+  # @key(name: "byNonProfit", fields: ["id"])
+  @auth(
+    rules: [
+      { allow: private, operations: [read] }
+      { allow: owner, operations: [read, create, delete, update] }
+    ]
+  ) {
+  id: ID!
+
+  IsPartner: Boolean!
+  RequiresApproval: Boolean!
+
+  # occupiedID: ID!
+  # occupied: [Student] @connection(fields: ["occupiedID"])
+
+  # bunch of extra fields from excel file
+  # find out required fields
+  # enum may be better for some fields
+  OrganizationLegalName: String
+  County: String # Excel file mentions a drop down? Should we model counties for producing a dropdown?
+  MissionStatement: String
+  ImpactArea: String # Related to tags?
+  Website: AWSURL
+  CurrentFYEndDate: AWSDate # TODO: Find out how to handle dates in graphql
+  CEOFirstName: String
+  CEOLastName: String
+  CEOEmail: AWSEmail
+  BoardChairFirstName: String
+  BoardChairLastName: String
+  BoardChairEmail: AWSEmail
+  BoardTermLengths: Int # excel sheet shows these as decimals, but is it required?
+  BoardTermLimits: Int
+  WhatMakesYourBoardUnique: String
+  PercentOfBoardMakingMonetaryContributions: Int
+  PercentOfBoardMakingInKindContributions: Int
+  WrittenBoardSelectionCriteria: String # enum?
+  WrittenConflictOfInterestPolicy: String # enum?
+  BoardDemographicsAfricanAmericanBlack: Int
+  BoardDemographicsAsian: Int
+  BoardDemographicsWhite: Int
+  BoardDemographicsHispanicLatinx: Int
+  BoardDemographicsMultiracial: Int
+  BoardDemographicsNativeAmerican: Int
+  BoardDemographicsPacificIslander: Int
+  BoardDemographicsOtherEthnicity: String
+
+  BoardDemographicsMale: Int
+  BoardDemographicsFemale: Int
+  BoardDemographicsSelfDescribe: Int
+  BoardDemographicsPreferNotToSay: Int
+
+  UniqueOrganizationURLLink: AWSURL
+  DonorEdgeStatus: String # enum?
+}
+
+# type Wishlist {
+
+# }
+
+# type Student @model @auth(rules: [{ allow: owner }]) {
+#   id: ID!
+#   cid: ID # the cognito user id?
+#   name: String!
+#   email: AWSEmail!
+#   premium: Boolean!
+
+#   # unsupported secondary index for local dev :(
+#   # has many
+#   # wishlist: [NonProfit] @connection(keyName: "byNonProfit", fields: ["id"])
+
+#   # has one
+#   cartID: ID!
+#   cart: NonProfit @connection(fields: ["cartID"])
+# }
+
+# type Administrator @model @auth(rules: [{ allow: owner }]) {
+#   id: ID!
+#   cid: ID # the cognito user id?
+#   name: String!
+#   email: AWSEmail!
+# }
+
+# email this out? or store in database for viewing in application
+# input ApprovalInput {
+#   who: Student
+#   selection: NonProfit
+#   approved: Boolean!
+#   comments: String!
+# }
+
+# Maybe simpler alternative to frontend call from the @searchable directive?
+# Simple free text search on some useful fields
+# Will need to hide premium as well
+# query SearchNonProfits($text: String) {
+#   searchNonProfits(
+#     filter: {
+#       or: [
+#         { OrganizationLegalName: { matchPhrase: $text } }
+#         { MissionStatement: { matchPhrase: $text } }
+#       ]
+#     }
+#   ) {
+#     NonProfit {
+#       id
+#       partner
+#       tags
+#       occupied
+#       OrganizationLegalName
+#       County
+#       MissionStatement
+#       ImpactArea
+#       Website
+#       CurrentFYEndDate
+#       CEOFirstName
+#       CEOLastName
+#       CEOEmail
+#       BoardChairFirstName
+#       BoardChairLastName
+#       BoardChairEmail
+#       BoardTermLengths
+#       BoardTermLimits
+#       WhatMakesYourBoardUnique
+#       PercentOfBoardMakingMonetaryContributions
+#       PercentOfBoardMakingInKindContributions
+#       WrittenBoardSelectionCriteria
+#       WrittenConflictOfInterestPolicy
+#       UniqueOrganizationURLLink
+#       DonorEdgeStatus
+#     }
+#   }
+# }
