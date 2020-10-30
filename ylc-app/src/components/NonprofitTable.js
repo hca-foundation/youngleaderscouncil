@@ -1,6 +1,6 @@
 import React, { Component} from 'react';
 import 'antd/dist/antd.css';
-import { Table, Tag, Space } from 'antd';
+import { Table, Space } from 'antd';
 import '../App.css';
 
 const columns = [
@@ -8,7 +8,7 @@ const columns = [
         title: 'Organization Name',
         dataIndex: 'orgName',
         key: 'orgName',
-        defaultSortOrder: 'descend',
+        defaultSortOrder: 'ascend',
         sorter: (a, b) => a.orgName.localeCompare(b.orgName)
       },
       {
