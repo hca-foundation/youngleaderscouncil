@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import { Button } from 'antd'
-import { Auth } from 'aws-amplify'
+import { Amplify, Auth } from 'aws-amplify'
 import { withAuthenticator } from 'aws-amplify-react'
 import Container from './Container'
+import aws_exports from './aws-exports';
+
+Amplify.configure(aws_exports);
 
 function Profile() {
   useEffect(() => {
