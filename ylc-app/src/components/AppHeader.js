@@ -1,4 +1,5 @@
 import { Layout, Menu } from 'antd'
+import { Link } from 'react-router-dom'
 import '../App.css';
 
 const { Header } = Layout
@@ -10,7 +11,16 @@ function AppHeader() {
                 <p>Young Leaders Council</p>
             </div>
             <Menu theme="dark" mode="horizontal">
-                <Menu.Item key="1">Non-Profit Database</Menu.Item>
+                <Menu.Item key="1">
+                    <Link to='/'>
+                        Non-Profit Database
+                    </Link>
+                </Menu.Item>
+                <Menu.Item key="1">
+                    <Link to='/admin'>
+                        Admin Dashboard
+                    </Link>
+                </Menu.Item>
             </Menu>
         </Header>
     );
