@@ -2,7 +2,7 @@ import '../App.css';
 
 function NonProfitRow(props) {
     return (
-        <div className='non-profit-row'>
+        <div className='non-profit-row basic-card'>
             <h1>{props.info.name}</h1>
             <p>{props.info.description}</p>
             <a href={props.info.website}>Visit Website</a>

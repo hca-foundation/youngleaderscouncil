@@ -11,7 +11,13 @@ const staticNonProfits = [
         description: 'To reach and teach all children in wheelchairs the importance of complete independence.',
         impactArea: 'Youth Development',
         website: 'http://www.ableyouth.org',
-    }
+    },
+    {
+        name: 'Bridges for the Deaf and Hard of Hearing',
+        description: 'To serve an empowered and united community in which the Deaf, deaf, hard of hearing, and hearing equally participate and are equally valued.',
+        impactArea: 'Youth Development',
+        website: 'http://www.bridgesfordeafandhh.org',
+    },
 ]
 
 function ApplicantView() {
@@ -28,6 +34,7 @@ function ApplicantView() {
                         that we partner with. If you're interested in serving on the board, click the "Connect" 
                         button and provide your information.
                     </p>
+                    <h3>Non-Profits [{staticNonProfits.length}]</h3>
                     {/* TODO: most likely switch to data tables lib instead of mapped div */}
                     {staticNonProfits.map((nonProfit, i) => <NonProfitRow key={i} info={nonProfit} />)}
                 </div>

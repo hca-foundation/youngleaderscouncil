@@ -1,7 +1,3 @@
-.App {
-  text-align: center;
-}
-
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -34,9 +30,9 @@
   padding: 0 1rem;
 }
 
-.non-profit-row {
+.basic-card {
   border: 1px solid #dedede;
-  padding: 3rem;
+  padding: 2rem;
   margin-bottom: 2rem;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
   background: #ffffff;
