@@ -1,5 +1,4 @@
 {
-    "CreateAPIKey": 0,
     "AppSyncApiName": "ylcapp",
     "DynamoDBBillingMode": "PAY_PER_REQUEST",
     "DynamoDBEnableServerSideEncryption": false,
@@ -9,6 +8,6 @@
             "Outputs.UserPoolId"
         ]
     },
-    "S3DeploymentBucket": "amplify-ylcapp-dev-173156-deployment",
-    "S3DeploymentRootKey": "amplify-appsync-files/42e1158109302020ed04c4d356ae19750c471324"
+    "S3DeploymentBucket": "ylc-app-main-20201029231028-deployment",
+    "S3DeploymentRootKey": "amplify-appsync-files/92fe1e1fff5468f9e3f91a41dffca18feb2d463e"
 }

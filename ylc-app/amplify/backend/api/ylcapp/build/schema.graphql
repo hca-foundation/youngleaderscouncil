@@ -39,20 +39,6 @@ type NonProfit {
   updatedAt: AWSDateTime!
 }
 
-type Wishlist {
-  id: ID!
-  nonProfitID: ID!
-  nonProfit(filter: ModelNonProfitFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelNonProfitConnection
-  createDate: AWSDateTime
-  firstName: String!
-  lastName: String!
-  email: String!
-  phoneNumber: String
-  createdAt: AWSDateTime!
-  updatedAt: AWSDateTime!
-  owner: String
-}
-
 enum ModelSortDirection {
   ASC
   DESC
@@ -194,8 +180,6 @@ enum ModelAttributeTypes {
 type Query {
   getNonProfit(id: ID!): NonProfit
   listNonProfits(filter: ModelNonProfitFilterInput, limit: Int, nextToken: String): ModelNonProfitConnection
-  getWishlist(id: ID!): Wishlist
-  listWishlists(filter: ModelWishlistFilterInput, limit: Int, nextToken: String): ModelWishlistConnection
 }
 
 input CreateNonProfitInput {
@@ -284,9 +268,6 @@ type Mutation {
   createNonProfit(input: CreateNonProfitInput!, condition: ModelNonProfitConditionInput): NonProfit
   updateNonProfit(input: UpdateNonProfitInput!, condition: ModelNonProfitConditionInput): NonProfit
   deleteNonProfit(input: DeleteNonProfitInput!, condition: ModelNonProfitConditionInput): NonProfit
-  createWishlist(input: CreateWishlistInput!, condition: ModelWishlistConditionInput): Wishlist
-  updateWishlist(input: UpdateWishlistInput!, condition: ModelWishlistConditionInput): Wishlist
-  deleteWishlist(input: DeleteWishlistInput!, condition: ModelWishlistConditionInput): Wishlist
 }
 
 input ModelNonProfitConditionInput {
@@ -334,61 +315,4 @@ type Subscription {
   onCreateNonProfit: NonProfit @aws_subscribe(mutations: ["createNonProfit"])
   onUpdateNonProfit: NonProfit @aws_subscribe(mutations: ["updateNonProfit"])
   onDeleteNonProfit: NonProfit @aws_subscribe(mutations: ["deleteNonProfit"])
-  onCreateWishlist(owner: String!): Wishlist @aws_subscribe(mutations: ["createWishlist"])
-  onUpdateWishlist(owner: String!): Wishlist @aws_subscribe(mutations: ["updateWishlist"])
-  onDeleteWishlist(owner: String!): Wishlist @aws_subscribe(mutations: ["deleteWishlist"])
-}
-
-type ModelWishlistConnection {
-  items: [Wishlist]
-  nextToken: String
-}
-
-input ModelWishlistFilterInput {
-  id: ModelIDInput
-  nonProfitID: ModelIDInput
-  createDate: ModelStringInput
-  firstName: ModelStringInput
-  lastName: ModelStringInput
-  email: ModelStringInput
-  phoneNumber: ModelStringInput
-  and: [ModelWishlistFilterInput]
-  or: [ModelWishlistFilterInput]
-  not: ModelWishlistFilterInput
-}
-
-input CreateWishlistInput {
-  id: ID
-  nonProfitID: ID!
-  createDate: AWSDateTime
-  firstName: String!
-  lastName: String!
-  email: String!
-  phoneNumber: String
-}
-
-input UpdateWishlistInput {
-  id: ID!
-  nonProfitID: ID
-  createDate: AWSDateTime
-  firstName: String
-  lastName: String
-  email: String
-  phoneNumber: String
-}
-
-input DeleteWishlistInput {
-  id: ID
-}
-
-input ModelWishlistConditionInput {
-  nonProfitID: ModelIDInput
-  createDate: ModelStringInput
-  firstName: ModelStringInput
-  lastName: ModelStringInput
-  email: ModelStringInput
-  phoneNumber: ModelStringInput
-  and: [ModelWishlistConditionInput]
-  or: [ModelWishlistConditionInput]
-  not: ModelWishlistConditionInput
 }

@@ -9,6 +9,8 @@
   },
   "api": {
     "ylcapp": {
+      "service": "AppSync",
+      "providerPlugin": "awscloudformation",
       "output": {
         "authConfig": {
           "defaultAuthentication": {
