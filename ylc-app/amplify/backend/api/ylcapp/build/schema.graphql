@@ -1,0 +1,444 @@
+type Tag {
+  id: ID!
+  label: String!
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+}
+
+type NonProfit {
+  id: ID!
+  partnered: Boolean!
+  premium: Boolean!
+  occupiedID: ID!
+  occupied(filter: ModelStudentFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelStudentConnection
+  OrganizationLegalName: String
+  County: String
+  MissionStatement: String
+  ImpactArea: String
+  Website: AWSURL
+  CurrentFYEndDate: AWSDate
+  CEOFirstName: String
+  CEOLastName: String
+  CEOEmail: AWSEmail
+  BoardChairFirstName: String
+  BoardChairLastName: String
+  BoardChairEmail: AWSEmail
+  BoardTermLengths: Int
+  BoardTermLimits: Int
+  WhatMakesYourBoardUnique: String
+  PercentOfBoardMakingMonetaryContributions: Int
+  PercentOfBoardMakingInKindContributions: Int
+  WrittenBoardSelectionCriteria: String
+  WrittenConflictOfInterestPolicy: String
+  UniqueOrganizationURLLink: AWSURL
+  DonorEdgeStatus: String!
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+}
+
+type Student {
+  id: ID!
+  cid: ID!
+  name: String!
+  email: AWSEmail!
+  premium: Boolean!
+  cartID: ID!
+  cart: NonProfit
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+  owner: String
+}
+
+type Administrator {
+  id: ID!
+  cid: ID!
+  name: String!
+  email: AWSEmail!
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+  owner: String
+}
+
+enum ModelSortDirection {
+  ASC
+  DESC
+}
+
+type ModelTagConnection {
+  items: [Tag]
+  nextToken: String
+}
+
+input ModelStringInput {
+  ne: String
+  eq: String
+  le: String
+  lt: String
+  ge: String
+  gt: String
+  contains: String
+  notContains: String
+  between: [String]
+  beginsWith: String
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+  size: ModelSizeInput
+}
+
+input ModelIDInput {
+  ne: ID
+  eq: ID
+  le: ID
+  lt: ID
+  ge: ID
+  gt: ID
+  contains: ID
+  notContains: ID
+  between: [ID]
+  beginsWith: ID
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+  size: ModelSizeInput
+}
+
+input ModelIntInput {
+  ne: Int
+  eq: Int
+  le: Int
+  lt: Int
+  ge: Int
+  gt: Int
+  between: [Int]
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+}
+
+input ModelFloatInput {
+  ne: Float
+  eq: Float
+  le: Float
+  lt: Float
+  ge: Float
+  gt: Float
+  between: [Float]
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+}
+
+input ModelBooleanInput {
+  ne: Boolean
+  eq: Boolean
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+}
+
+input ModelSizeInput {
+  ne: Int
+  eq: Int
+  le: Int
+  lt: Int
+  ge: Int
+  gt: Int
+  between: [Int]
+}
+
+input ModelTagFilterInput {
+  id: ModelIDInput
+  label: ModelStringInput
+  and: [ModelTagFilterInput]
+  or: [ModelTagFilterInput]
+  not: ModelTagFilterInput
+}
+
+enum ModelAttributeTypes {
+  binary
+  binarySet
+  bool
+  list
+  map
+  number
+  numberSet
+  string
+  stringSet
+  _null
+}
+
+type Query {
+  getTag(id: ID!): Tag
+  listTags(filter: ModelTagFilterInput, limit: Int, nextToken: String): ModelTagConnection
+  getNonProfit(id: ID!): NonProfit
+  listNonProfits(filter: ModelNonProfitFilterInput, limit: Int, nextToken: String): ModelNonProfitConnection
+  getStudent(id: ID!): Student
+  listStudents(filter: ModelStudentFilterInput, limit: Int, nextToken: String): ModelStudentConnection
+  getAdministrator(id: ID!): Administrator
+  listAdministrators(filter: ModelAdministratorFilterInput, limit: Int, nextToken: String): ModelAdministratorConnection
+}
+
+input CreateTagInput {
+  id: ID
+  label: String!
+}
+
+input UpdateTagInput {
+  id: ID!
+  label: String
+}
+
+input DeleteTagInput {
+  id: ID
+}
+
+type Mutation {
+  createTag(input: CreateTagInput!, condition: ModelTagConditionInput): Tag
+  updateTag(input: UpdateTagInput!, condition: ModelTagConditionInput): Tag
+  deleteTag(input: DeleteTagInput!, condition: ModelTagConditionInput): Tag
+  createNonProfit(input: CreateNonProfitInput!, condition: ModelNonProfitConditionInput): NonProfit
+  updateNonProfit(input: UpdateNonProfitInput!, condition: ModelNonProfitConditionInput): NonProfit
+  deleteNonProfit(input: DeleteNonProfitInput!, condition: ModelNonProfitConditionInput): NonProfit
+  createStudent(input: CreateStudentInput!, condition: ModelStudentConditionInput): Student
+  updateStudent(input: UpdateStudentInput!, condition: ModelStudentConditionInput): Student
+  deleteStudent(input: DeleteStudentInput!, condition: ModelStudentConditionInput): Student
+  createAdministrator(input: CreateAdministratorInput!, condition: ModelAdministratorConditionInput): Administrator
+  updateAdministrator(input: UpdateAdministratorInput!, condition: ModelAdministratorConditionInput): Administrator
+  deleteAdministrator(input: DeleteAdministratorInput!, condition: ModelAdministratorConditionInput): Administrator
+}
+
+input ModelTagConditionInput {
+  label: ModelStringInput
+  and: [ModelTagConditionInput]
+  or: [ModelTagConditionInput]
+  not: ModelTagConditionInput
+}
+
+type Subscription {
+  onCreateTag: Tag @aws_subscribe(mutations: ["createTag"])
+  onUpdateTag: Tag @aws_subscribe(mutations: ["updateTag"])
+  onDeleteTag: Tag @aws_subscribe(mutations: ["deleteTag"])
+  onCreateNonProfit: NonProfit @aws_subscribe(mutations: ["createNonProfit"])
+  onUpdateNonProfit: NonProfit @aws_subscribe(mutations: ["updateNonProfit"])
+  onDeleteNonProfit: NonProfit @aws_subscribe(mutations: ["deleteNonProfit"])
+  onCreateStudent(owner: String): Student @aws_subscribe(mutations: ["createStudent"])
+  onUpdateStudent(owner: String): Student @aws_subscribe(mutations: ["updateStudent"])
+  onDeleteStudent(owner: String): Student @aws_subscribe(mutations: ["deleteStudent"])
+  onCreateAdministrator(owner: String!): Administrator @aws_subscribe(mutations: ["createAdministrator"])
+  onUpdateAdministrator(owner: String!): Administrator @aws_subscribe(mutations: ["updateAdministrator"])
+  onDeleteAdministrator(owner: String!): Administrator @aws_subscribe(mutations: ["deleteAdministrator"])
+}
+
+type ModelNonProfitConnection {
+  items: [NonProfit]
+  nextToken: String
+}
+
+input ModelNonProfitFilterInput {
+  id: ModelIDInput
+  partnered: ModelBooleanInput
+  premium: ModelBooleanInput
+  occupiedID: ModelIDInput
+  OrganizationLegalName: ModelStringInput
+  County: ModelStringInput
+  MissionStatement: ModelStringInput
+  ImpactArea: ModelStringInput
+  Website: ModelStringInput
+  CurrentFYEndDate: ModelStringInput
+  CEOFirstName: ModelStringInput
+  CEOLastName: ModelStringInput
+  CEOEmail: ModelStringInput
+  BoardChairFirstName: ModelStringInput
+  BoardChairLastName: ModelStringInput
+  BoardChairEmail: ModelStringInput
+  BoardTermLengths: ModelIntInput
+  BoardTermLimits: ModelIntInput
+  WhatMakesYourBoardUnique: ModelStringInput
+  PercentOfBoardMakingMonetaryContributions: ModelIntInput
+  PercentOfBoardMakingInKindContributions: ModelIntInput
+  WrittenBoardSelectionCriteria: ModelStringInput
+  WrittenConflictOfInterestPolicy: ModelStringInput
+  UniqueOrganizationURLLink: ModelStringInput
+  DonorEdgeStatus: ModelStringInput
+  and: [ModelNonProfitFilterInput]
+  or: [ModelNonProfitFilterInput]
+  not: ModelNonProfitFilterInput
+}
+
+input CreateNonProfitInput {
+  id: ID
+  partnered: Boolean!
+  premium: Boolean!
+  occupiedID: ID!
+  OrganizationLegalName: String
+  County: String
+  MissionStatement: String
+  ImpactArea: String
+  Website: AWSURL
+  CurrentFYEndDate: AWSDate
+  CEOFirstName: String
+  CEOLastName: String
+  CEOEmail: AWSEmail
+  BoardChairFirstName: String
+  BoardChairLastName: String
+  BoardChairEmail: AWSEmail
+  BoardTermLengths: Int
+  BoardTermLimits: Int
+  WhatMakesYourBoardUnique: String
+  PercentOfBoardMakingMonetaryContributions: Int
+  PercentOfBoardMakingInKindContributions: Int
+  WrittenBoardSelectionCriteria: String
+  WrittenConflictOfInterestPolicy: String
+  UniqueOrganizationURLLink: AWSURL
+  DonorEdgeStatus: String!
+}
+
+input UpdateNonProfitInput {
+  id: ID!
+  partnered: Boolean
+  premium: Boolean
+  occupiedID: ID
+  OrganizationLegalName: String
+  County: String
+  MissionStatement: String
+  ImpactArea: String
+  Website: AWSURL
+  CurrentFYEndDate: AWSDate
+  CEOFirstName: String
+  CEOLastName: String
+  CEOEmail: AWSEmail
+  BoardChairFirstName: String
+  BoardChairLastName: String
+  BoardChairEmail: AWSEmail
+  BoardTermLengths: Int
+  BoardTermLimits: Int
+  WhatMakesYourBoardUnique: String
+  PercentOfBoardMakingMonetaryContributions: Int
+  PercentOfBoardMakingInKindContributions: Int
+  WrittenBoardSelectionCriteria: String
+  WrittenConflictOfInterestPolicy: String
+  UniqueOrganizationURLLink: AWSURL
+  DonorEdgeStatus: String
+}
+
+input DeleteNonProfitInput {
+  id: ID
+}
+
+input ModelNonProfitConditionInput {
+  partnered: ModelBooleanInput
+  premium: ModelBooleanInput
+  occupiedID: ModelIDInput
+  OrganizationLegalName: ModelStringInput
+  County: ModelStringInput
+  MissionStatement: ModelStringInput
+  ImpactArea: ModelStringInput
+  Website: ModelStringInput
+  CurrentFYEndDate: ModelStringInput
+  CEOFirstName: ModelStringInput
+  CEOLastName: ModelStringInput
+  CEOEmail: ModelStringInput
+  BoardChairFirstName: ModelStringInput
+  BoardChairLastName: ModelStringInput
+  BoardChairEmail: ModelStringInput
+  BoardTermLengths: ModelIntInput
+  BoardTermLimits: ModelIntInput
+  WhatMakesYourBoardUnique: ModelStringInput
+  PercentOfBoardMakingMonetaryContributions: ModelIntInput
+  PercentOfBoardMakingInKindContributions: ModelIntInput
+  WrittenBoardSelectionCriteria: ModelStringInput
+  WrittenConflictOfInterestPolicy: ModelStringInput
+  UniqueOrganizationURLLink: ModelStringInput
+  DonorEdgeStatus: ModelStringInput
+  and: [ModelNonProfitConditionInput]
+  or: [ModelNonProfitConditionInput]
+  not: ModelNonProfitConditionInput
+}
+
+type ModelStudentConnection {
+  items: [Student]
+  nextToken: String
+}
+
+input ModelStudentFilterInput {
+  id: ModelIDInput
+  cid: ModelIDInput
+  name: ModelStringInput
+  email: ModelStringInput
+  premium: ModelBooleanInput
+  cartID: ModelIDInput
+  and: [ModelStudentFilterInput]
+  or: [ModelStudentFilterInput]
+  not: ModelStudentFilterInput
+}
+
+input CreateStudentInput {
+  id: ID
+  cid: ID!
+  name: String!
+  email: AWSEmail!
+  premium: Boolean!
+  cartID: ID!
+}
+
+input UpdateStudentInput {
+  id: ID!
+  cid: ID
+  name: String
+  email: AWSEmail
+  premium: Boolean
+  cartID: ID
+}
+
+input DeleteStudentInput {
+  id: ID
+}
+
+input ModelStudentConditionInput {
+  cid: ModelIDInput
+  name: ModelStringInput
+  email: ModelStringInput
+  premium: ModelBooleanInput
+  cartID: ModelIDInput
+  and: [ModelStudentConditionInput]
+  or: [ModelStudentConditionInput]
+  not: ModelStudentConditionInput
+}
+
+type ModelAdministratorConnection {
+  items: [Administrator]
+  nextToken: String
+}
+
+input ModelAdministratorFilterInput {
+  id: ModelIDInput
+  cid: ModelIDInput
+  name: ModelStringInput
+  email: ModelStringInput
+  and: [ModelAdministratorFilterInput]
+  or: [ModelAdministratorFilterInput]
+  not: ModelAdministratorFilterInput
+}
+
+input CreateAdministratorInput {
+  id: ID
+  cid: ID!
+  name: String!
+  email: AWSEmail!
+}
+
+input UpdateAdministratorInput {
+  id: ID!
+  cid: ID
+  name: String
+  email: AWSEmail
+}
+
+input DeleteAdministratorInput {
+  id: ID
+}
+
+input ModelAdministratorConditionInput {
+  cid: ModelIDInput
+  name: ModelStringInput
+  email: ModelStringInput
+  and: [ModelAdministratorConditionInput]
+  or: [ModelAdministratorConditionInput]
+  not: ModelAdministratorConditionInput
+}

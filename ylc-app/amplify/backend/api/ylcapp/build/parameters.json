@@ -1,0 +1,13 @@
+{
+    "AppSyncApiName": "ylcapp",
+    "DynamoDBBillingMode": "PAY_PER_REQUEST",
+    "DynamoDBEnableServerSideEncryption": false,
+    "AuthCognitoUserPoolId": {
+        "Fn::GetAtt": [
+            "authylcapp7ed7733d",
+            "Outputs.UserPoolId"
+        ]
+    },
+    "S3DeploymentBucket": "amplify-ylcapp-dev-173156-deployment",
+    "S3DeploymentRootKey": "amplify-appsync-files/19e76d916333d772afb1cc92ba9775b80dcacb06"
+}

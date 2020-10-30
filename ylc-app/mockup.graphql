@@ -2,32 +2,47 @@
 #   - need help fixing these relationships between models up
 #   - need help with associating admin/student to aws logins
 
-scalar AWSDate
-scalar AWSEmail
-scalar AWSURL
-
 # Maybe just freetext tags attached to non profit instead?
 # Honestly might be best to ditch tags for the MVP
 type Tag
   @model
-  @auth(rules: [{ allow: owner, operations: [create, delete, update] }]) {
-  @key(name: "byTag", fields: ["id"])
-
+  # @searchable
+  # @key(name: "byTag", fields: ["id"])
+  @auth(
+    rules: [
+      { allow: private, operations: [read] }
+      {
+        allow: groups
+        groups: ["Admin"]
+        operations: [read, create, delete, update]
+      }
+    ]
+  ) {
   id: ID!
   label: String!
 }
 
 type NonProfit
-  @searchable
   @model
-  @auth(rules: [{ allow: owner, operations: [create, delete, update] }]) {
-  @key(name: "byNonProfit", fields: ["id"])
-
+  # @searchable
+  # @key(name: "byNonProfit", fields: ["id"])
+  @auth(
+    rules: [
+      { allow: private, operations: [read] }
+      {
+        allow: groups
+        groups: ["Admin"]
+        operations: [read, create, delete, update]
+      }
+    ]
+  ) {
   id: ID!
-  partner: Boolean!
+  partnered: Boolean!
+  premium: Boolean!
 
+  # unsupported secondary index for local dev :(
   # has many -- OR make this m to m for bi-directional search?
-  tags: [Tag!] @connection(keyName: "byTag", fields: ["id"])
+  # tags: [Tag!] @connection(fields: ["tagIDs"])
 
   # has one
   occupiedID: ID!
@@ -66,98 +81,86 @@ type NonProfit
   DonorEdgeStatus: String! # enum?
 }
 
-type BoardDemographicsEthnicity
-  @searchable
-  @model
-  @auth(rules: [{ allow: owner }]) {
-
-  id: ID!
-  name: String! #checkboxes/radiobutton options on UI
-  count: Int
-}
-
-type BoardDemographicsGender
-  @searchable
-  @model
-  @auth(rules: [{ allow: owner }]) {
-
-  id: ID!
-  gender: String! #checkboxes/radiobutton options on UI
-  count: Int
-}
-
 type Student
   @model
-  @auth(rules: [{ allow: owner }]) {
-
+  @auth(
+    rules: [
+      { allow: owner }
+      {
+        allow: groups
+        groups: ["Admin"]
+        operations: [read, create, delete, update]
+      }
+    ]
+  ) {
   id: ID!
+  cid: ID! # the cognito user id?
   name: String!
   email: AWSEmail!
   premium: Boolean!
 
+  # unsupported secondary index for local dev :(
   # has many
-  wishlist: [NonProfit] @connection(keyName: "byNonProfit", fields: ["id"])
+  # wishlist: [NonProfit] @connection(keyName: "byNonProfit", fields: ["id"])
 
   # has one
   cartID: ID!
   cart: NonProfit @connection(fields: ["cartID"])
 }
 
-type Administrator
-  @model
-  @auth(rules: [{ allow: owner }]) {
-
+type Administrator @model @auth(rules: [{ allow: owner }]) {
   id: ID!
+  cid: ID! # the cognito user id?
   name: String!
   email: AWSEmail!
 }
 
 # email this out? or store in database for viewing in application
-input ApprovalInput {
-  who: Student! @connection(name: "Student")
-  selection: NonProfit
-  approved: Boolean!
-  comments: String!
-}
+# input ApprovalInput {
+#   who: Student
+#   selection: NonProfit
+#   approved: Boolean!
+#   comments: String!
+# }
 
 # Maybe simpler alternative to frontend call from the @searchable directive?
 # Simple free text search on some useful fields
 # Will need to hide premium as well
-query SearchNonProfits($text: String) {
-  searchNonProfits(
-    filter: {
-      or: [
-        { OrganizationLegalName: { matchPhrase: $text } }
-        { MissionStatement: { matchPhrase: $text } }
-      ]
-    }
-  ) {
-    NonProfit {
-      id
-      partner
-      tags
-      occupied
-      OrganizationLegalName
-      County
-      MissionStatement
-      ImpactArea
-      Website
-      CurrentFYEndDate
-      CEOFirstName
-      CEOLastName
-      CEOEmail
-      BoardChairFirstName
-      BoardChairLastName
-      BoardChairEmail
-      BoardTermLengths
-      BoardTermLimits
-      WhatMakesYourBoardUnique
-      PercentOfBoardMakingMonetaryContributions
-      PercentOfBoardMakingInKindContributions
-      WrittenBoardSelectionCriteria
-      WrittenConflictOfInterestPolicy
-      UniqueOrganizationURLLink
-      DonorEdgeStatus
-    }
-  }
-}
+# query SearchNonProfits($text: String) {
+#   searchNonProfits(
+#     filter: {
+#       or: [
+#         { OrganizationLegalName: { matchPhrase: $text } }
+#         { MissionStatement: { matchPhrase: $text } }
+#       ]
+#     }
+#   ) {
+#     NonProfit {
+#       id
+#       partner
+#       tags
+#       occupied
+#       OrganizationLegalName
+#       County
+#       MissionStatement
+#       ImpactArea
+#       Website
+#       CurrentFYEndDate
+#       CEOFirstName
+#       CEOLastName
+#       CEOEmail
+#       BoardChairFirstName
+#       BoardChairLastName
+#       BoardChairEmail
+#       BoardTermLengths
+#       BoardTermLimits
+#       WhatMakesYourBoardUnique
+#       PercentOfBoardMakingMonetaryContributions
+#       PercentOfBoardMakingInKindContributions
+#       WrittenBoardSelectionCriteria
+#       WrittenConflictOfInterestPolicy
+#       UniqueOrganizationURLLink
+#       DonorEdgeStatus
+#     }
+#   }
+# }
