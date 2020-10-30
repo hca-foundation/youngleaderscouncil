@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useHistory } from "react-router-dom";
-import { Input } from 'antd'
-import { Button } from 'antd';
+import { Input, Form, Button } from 'antd';
 import './Login.css'
 
 
@@ -12,12 +11,18 @@ const Login = () => {
 
     const styles = {
         container: {
-            width: '400px',
+            width: '325px',
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
             justifyItems: 'center'
+        },
+        button: {
+            marginTop: '1.7em',
+            width: '20em',
+            backgroundColor: '#454B60'
         }
+
     }
 
     const handleChange = (e) => {
@@ -34,15 +39,19 @@ const Login = () => {
 
  
     return (
-        <main style={styles.container}>
-        <h1>Are you an Admin?</h1>
-        <h3>Log In Here</h3>
+        <>
+        <Form>
+        <main className='login-container' style={styles.container}>
+        <h1 className='login-header'>Sign in to your account</h1>
         <label>Email</label>
         <Input id={'email'} onChange={handleChange}></Input>
         <label>Password</label>
         <Input id={'password'} onChange={handleChange}></Input>
-        <Button type='primary' onClick={handleSubmit}>Login</Button>
+        <Button style={styles.button} size='large' shape='round' type='primary' onClick={handleSubmit}>Login</Button>
         </main>
+            
+        </Form>
+        </>
     )
 }
 
