@@ -1,35 +1,18 @@
 import React, { Component } from 'react'
+import Routes from './Routes'
 
 class YLC extends Component {
 
-    state = {
-        nonprofitData: []
-    }
-
-    componentDidMount() {
-        //    get nonprofit data here with graphQL query
-        // set in state
-
-    }
+   
 
     render() {
-        return(
-            <>
-        <h1>Eligible Nonprofits</h1 >
-        <table>
 
-        {this.state.nonprofitData.map(data => {
+        return (
             <>
-            <th>{}</th>
-            <tr>{}</tr>
-            <tr>{}</tr>
-            <tr>{}</tr>
+        <Routes />
             </>
-        })}
-
-        </table>
-        </>
     )
+
     }
 
 }
