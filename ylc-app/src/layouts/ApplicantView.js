@@ -1,4 +1,5 @@
 import { Layout } from 'antd'
+import AppHeader from '../components/AppHeader'
 import NonProfitRow from '../components/NonProfitRow'
 import '../App.css';
 
@@ -15,20 +16,23 @@ const staticNonProfits = [
 
 function ApplicantView() {
     return (
-        <Content
-            className='site-layout'
-            style={{ padding: '0 4rem', marginTop: '4rem' }}>
-            <div className='site-layout-background' style={{ padding: '2rem', minHeight: '100vh' }}>
-                <h1>Non-Profit Database</h1>
-                <p>
-                    Welcome to our Non-Profit Database. Here you'll find a list of all the non-profits 
-                    that we partner with. If you're interested in serving on the board, click the "Connect" 
-                    button and provide your information.
-                </p>
-                {/* TODO: most likely switch to data tables lib instead of mapped div */}
-                {staticNonProfits.map((nonProfit, i) => <NonProfitRow key={i} info={nonProfit} />)}
-            </div>
-        </Content>
+        <div>
+            <AppHeader />
+            <Content
+                className='site-layout'
+                style={{ padding: '0 4rem', marginTop: '4rem' }}>
+                <div className='site-layout-background' style={{ padding: '2rem', minHeight: '100vh' }}>
+                    <h1>Non-Profit Database</h1>
+                    <p>
+                        Welcome to our Non-Profit Database. Here you'll find a list of all the non-profits 
+                        that we partner with. If you're interested in serving on the board, click the "Connect" 
+                        button and provide your information.
+                    </p>
+                    {/* TODO: most likely switch to data tables lib instead of mapped div */}
+                    {staticNonProfits.map((nonProfit, i) => <NonProfitRow key={i} info={nonProfit} />)}
+                </div>
+            </Content>
+        </div>
     );
 }
 
