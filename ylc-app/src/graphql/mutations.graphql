@@ -1,0 +1,322 @@
+# this is an auto generated file. This will be overwritten
+mutation CreateTag(
+  $input: CreateTagInput!
+  $condition: ModelTagConditionInput
+) {
+  createTag(input: $input, condition: $condition) {
+    id
+    label
+    createdAt
+    updatedAt
+  }
+}
+mutation UpdateTag(
+  $input: UpdateTagInput!
+  $condition: ModelTagConditionInput
+) {
+  updateTag(input: $input, condition: $condition) {
+    id
+    label
+    createdAt
+    updatedAt
+  }
+}
+mutation DeleteTag(
+  $input: DeleteTagInput!
+  $condition: ModelTagConditionInput
+) {
+  deleteTag(input: $input, condition: $condition) {
+    id
+    label
+    createdAt
+    updatedAt
+  }
+}
+mutation CreateNonProfit(
+  $input: CreateNonProfitInput!
+  $condition: ModelNonProfitConditionInput
+) {
+  createNonProfit(input: $input, condition: $condition) {
+    id
+    partnered
+    premium
+    occupiedID
+    occupied {
+      nextToken
+    }
+    OrganizationLegalName
+    County
+    MissionStatement
+    ImpactArea
+    Website
+    CurrentFYEndDate
+    CEOFirstName
+    CEOLastName
+    CEOEmail
+    BoardChairFirstName
+    BoardChairLastName
+    BoardChairEmail
+    BoardTermLengths
+    BoardTermLimits
+    WhatMakesYourBoardUnique
+    PercentOfBoardMakingMonetaryContributions
+    PercentOfBoardMakingInKindContributions
+    WrittenBoardSelectionCriteria
+    WrittenConflictOfInterestPolicy
+    UniqueOrganizationURLLink
+    DonorEdgeStatus
+    createdAt
+    updatedAt
+  }
+}
+mutation UpdateNonProfit(
+  $input: UpdateNonProfitInput!
+  $condition: ModelNonProfitConditionInput
+) {
+  updateNonProfit(input: $input, condition: $condition) {
+    id
+    partnered
+    premium
+    occupiedID
+    occupied {
+      nextToken
+    }
+    OrganizationLegalName
+    County
+    MissionStatement
+    ImpactArea
+    Website
+    CurrentFYEndDate
+    CEOFirstName
+    CEOLastName
+    CEOEmail
+    BoardChairFirstName
+    BoardChairLastName
+    BoardChairEmail
+    BoardTermLengths
+    BoardTermLimits
+    WhatMakesYourBoardUnique
+    PercentOfBoardMakingMonetaryContributions
+    PercentOfBoardMakingInKindContributions
+    WrittenBoardSelectionCriteria
+    WrittenConflictOfInterestPolicy
+    UniqueOrganizationURLLink
+    DonorEdgeStatus
+    createdAt
+    updatedAt
+  }
+}
+mutation DeleteNonProfit(
+  $input: DeleteNonProfitInput!
+  $condition: ModelNonProfitConditionInput
+) {
+  deleteNonProfit(input: $input, condition: $condition) {
+    id
+    partnered
+    premium
+    occupiedID
+    occupied {
+      nextToken
+    }
+    OrganizationLegalName
+    County
+    MissionStatement
+    ImpactArea
+    Website
+    CurrentFYEndDate
+    CEOFirstName
+    CEOLastName
+    CEOEmail
+    BoardChairFirstName
+    BoardChairLastName
+    BoardChairEmail
+    BoardTermLengths
+    BoardTermLimits
+    WhatMakesYourBoardUnique
+    PercentOfBoardMakingMonetaryContributions
+    PercentOfBoardMakingInKindContributions
+    WrittenBoardSelectionCriteria
+    WrittenConflictOfInterestPolicy
+    UniqueOrganizationURLLink
+    DonorEdgeStatus
+    createdAt
+    updatedAt
+  }
+}
+mutation CreateStudent(
+  $input: CreateStudentInput!
+  $condition: ModelStudentConditionInput
+) {
+  createStudent(input: $input, condition: $condition) {
+    id
+    cid
+    name
+    email
+    premium
+    cartID
+    cart {
+      id
+      partnered
+      premium
+      occupiedID
+      OrganizationLegalName
+      County
+      MissionStatement
+      ImpactArea
+      Website
+      CurrentFYEndDate
+      CEOFirstName
+      CEOLastName
+      CEOEmail
+      BoardChairFirstName
+      BoardChairLastName
+      BoardChairEmail
+      BoardTermLengths
+      BoardTermLimits
+      WhatMakesYourBoardUnique
+      PercentOfBoardMakingMonetaryContributions
+      PercentOfBoardMakingInKindContributions
+      WrittenBoardSelectionCriteria
+      WrittenConflictOfInterestPolicy
+      UniqueOrganizationURLLink
+      DonorEdgeStatus
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+    owner
+  }
+}
+mutation UpdateStudent(
+  $input: UpdateStudentInput!
+  $condition: ModelStudentConditionInput
+) {
+  updateStudent(input: $input, condition: $condition) {
+    id
+    cid
+    name
+    email
+    premium
+    cartID
+    cart {
+      id
+      partnered
+      premium
+      occupiedID
+      OrganizationLegalName
+      County
+      MissionStatement
+      ImpactArea
+      Website
+      CurrentFYEndDate
+      CEOFirstName
+      CEOLastName
+      CEOEmail
+      BoardChairFirstName
+      BoardChairLastName
+      BoardChairEmail
+      BoardTermLengths
+      BoardTermLimits
+      WhatMakesYourBoardUnique
+      PercentOfBoardMakingMonetaryContributions
+      PercentOfBoardMakingInKindContributions
+      WrittenBoardSelectionCriteria
+      WrittenConflictOfInterestPolicy
+      UniqueOrganizationURLLink
+      DonorEdgeStatus
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+    owner
+  }
+}
+mutation DeleteStudent(
+  $input: DeleteStudentInput!
+  $condition: ModelStudentConditionInput
+) {
+  deleteStudent(input: $input, condition: $condition) {
+    id
+    cid
+    name
+    email
+    premium
+    cartID
+    cart {
+      id
+      partnered
+      premium
+      occupiedID
+      OrganizationLegalName
+      County
+      MissionStatement
+      ImpactArea
+      Website
+      CurrentFYEndDate
+      CEOFirstName
+      CEOLastName
+      CEOEmail
+      BoardChairFirstName
+      BoardChairLastName
+      BoardChairEmail
+      BoardTermLengths
+      BoardTermLimits
+      WhatMakesYourBoardUnique
+      PercentOfBoardMakingMonetaryContributions
+      PercentOfBoardMakingInKindContributions
+      WrittenBoardSelectionCriteria
+      WrittenConflictOfInterestPolicy
+      UniqueOrganizationURLLink
+      DonorEdgeStatus
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+    owner
+  }
+}
+mutation CreateAdministrator(
+  $input: CreateAdministratorInput!
+  $condition: ModelAdministratorConditionInput
+) {
+  createAdministrator(input: $input, condition: $condition) {
+    id
+    cid
+    name
+    email
+    createdAt
+    updatedAt
+    owner
+  }
+}
+mutation UpdateAdministrator(
+  $input: UpdateAdministratorInput!
+  $condition: ModelAdministratorConditionInput
+) {
+  updateAdministrator(input: $input, condition: $condition) {
+    id
+    cid
+    name
+    email
+    createdAt
+    updatedAt
+    owner
+  }
+}
+mutation DeleteAdministrator(
+  $input: DeleteAdministratorInput!
+  $condition: ModelAdministratorConditionInput
+) {
+  deleteAdministrator(input: $input, condition: $condition) {
+    id
+    cid
+    name
+    email
+    createdAt
+    updatedAt
+    owner
+  }
+}

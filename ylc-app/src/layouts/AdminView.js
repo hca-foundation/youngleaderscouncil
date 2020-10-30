@@ -5,7 +5,7 @@ import { Button, Layout } from 'antd'
 // import { withAuthenticator } from 'aws-amplify-react'
 import AppHeader from '../components/AppHeader'
 import Container from '../components/Container'
-// import aws_exports from './aws-exports';
+// import aws_exports from '../aws-exports';
 
 // Amplify.configure(aws_exports);
 
@@ -18,21 +18,21 @@ const user = {
 }
 
 function Profile() {
-//   useEffect(() => {
-//     checkUser()
-//   }, [])
-//   const [user, setUser] = useState({}) 
-//   async function checkUser() {
-//     try {
-//       const data = await Auth.currentUserPoolUser()
-//       const userInfo = { username: data.username, ...data.attributes, }
-//       setUser(userInfo)
-//     } catch (err) { console.log('error: ', err) }
-//   }
+  // useEffect(() => {
+  //   checkUser()
+  // }, [])
+  // const [user, setUser] = useState({}) 
+  // async function checkUser() {
+  //   try {
+  //     const data = await Auth.currentUserPoolUser()
+  //     const userInfo = { username: data.username, ...data.attributes, }
+  //     setUser(userInfo)
+  //   } catch (err) { console.log('error: ', err) }
+  // }
   function signOut() {
       console.log('signOut fired')
-//     Auth.signOut()
-//       .catch(err => console.log('error signing out: ', err))
+    // Auth.signOut()
+    //   .catch(err => console.log('error signing out: ', err))
   }
   return (
     <div>
