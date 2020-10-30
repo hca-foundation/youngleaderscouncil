@@ -15,7 +15,8 @@ const Login = () => {
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
-            justifyItems: 'center'
+            justifyItems: 'center',
+            margin: 'auto'
         },
         button: {
             marginTop: '1.7em',

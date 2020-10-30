@@ -8,7 +8,6 @@ const Nav = (props) => {
 
     const styles = {
         nav: {
-            // marginTop: '40px',
             height: '100%'
         },
         menuItem: {
