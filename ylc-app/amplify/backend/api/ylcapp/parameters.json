@@ -1,0 +1,11 @@
+{
+    "AppSyncApiName": "ylcapp",
+    "DynamoDBBillingMode": "PAY_PER_REQUEST",
+    "DynamoDBEnableServerSideEncryption": false,
+    "AuthCognitoUserPoolId": {
+        "Fn::GetAtt": [
+            "authylcapp7ed7733d",
+            "Outputs.UserPoolId"
+        ]
+    }
+}

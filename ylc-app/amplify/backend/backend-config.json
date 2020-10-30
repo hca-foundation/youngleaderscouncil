@@ -6,5 +6,20 @@
       "dependsOn": [],
       "customAuth": false
     }
+  },
+  "api": {
+    "ylcapp": {
+      "output": {
+        "authConfig": {
+          "defaultAuthentication": {
+            "authenticationType": "AMAZON_COGNITO_USER_POOLS",
+            "userPoolConfig": {
+              "userPoolId": "authylcapp7ed7733d"
+            }
+          },
+          "additionalAuthenticationProviders": []
+        }
+      }
+    }
   }
 }

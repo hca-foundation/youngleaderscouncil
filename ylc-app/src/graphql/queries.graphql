@@ -1,0 +1,183 @@
+# this is an auto generated file. This will be overwritten
+query GetTag($id: ID!) {
+  getTag(id: $id) {
+    id
+    label
+    createdAt
+    updatedAt
+  }
+}
+query ListTags($filter: ModelTagFilterInput, $limit: Int, $nextToken: String) {
+  listTags(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      label
+      createdAt
+      updatedAt
+    }
+    nextToken
+  }
+}
+query GetNonProfit($id: ID!) {
+  getNonProfit(id: $id) {
+    id
+    partnered
+    premium
+    occupiedID
+    occupied {
+      nextToken
+    }
+    OrganizationLegalName
+    County
+    MissionStatement
+    ImpactArea
+    Website
+    CurrentFYEndDate
+    CEOFirstName
+    CEOLastName
+    CEOEmail
+    BoardChairFirstName
+    BoardChairLastName
+    BoardChairEmail
+    BoardTermLengths
+    BoardTermLimits
+    WhatMakesYourBoardUnique
+    PercentOfBoardMakingMonetaryContributions
+    PercentOfBoardMakingInKindContributions
+    WrittenBoardSelectionCriteria
+    WrittenConflictOfInterestPolicy
+    UniqueOrganizationURLLink
+    DonorEdgeStatus
+    createdAt
+    updatedAt
+  }
+}
+query ListNonProfits(
+  $filter: ModelNonProfitFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listNonProfits(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      partnered
+      premium
+      occupiedID
+      OrganizationLegalName
+      County
+      MissionStatement
+      ImpactArea
+      Website
+      CurrentFYEndDate
+      CEOFirstName
+      CEOLastName
+      CEOEmail
+      BoardChairFirstName
+      BoardChairLastName
+      BoardChairEmail
+      BoardTermLengths
+      BoardTermLimits
+      WhatMakesYourBoardUnique
+      PercentOfBoardMakingMonetaryContributions
+      PercentOfBoardMakingInKindContributions
+      WrittenBoardSelectionCriteria
+      WrittenConflictOfInterestPolicy
+      UniqueOrganizationURLLink
+      DonorEdgeStatus
+      createdAt
+      updatedAt
+    }
+    nextToken
+  }
+}
+query GetStudent($id: ID!) {
+  getStudent(id: $id) {
+    id
+    cid
+    name
+    email
+    premium
+    cartID
+    cart {
+      id
+      partnered
+      premium
+      occupiedID
+      OrganizationLegalName
+      County
+      MissionStatement
+      ImpactArea
+      Website
+      CurrentFYEndDate
+      CEOFirstName
+      CEOLastName
+      CEOEmail
+      BoardChairFirstName
+      BoardChairLastName
+      BoardChairEmail
+      BoardTermLengths
+      BoardTermLimits
+      WhatMakesYourBoardUnique
+      PercentOfBoardMakingMonetaryContributions
+      PercentOfBoardMakingInKindContributions
+      WrittenBoardSelectionCriteria
+      WrittenConflictOfInterestPolicy
+      UniqueOrganizationURLLink
+      DonorEdgeStatus
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+    owner
+  }
+}
+query ListStudents(
+  $filter: ModelStudentFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listStudents(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      cid
+      name
+      email
+      premium
+      cartID
+      createdAt
+      updatedAt
+      owner
+    }
+    nextToken
+  }
+}
+query GetAdministrator($id: ID!) {
+  getAdministrator(id: $id) {
+    id
+    cid
+    name
+    email
+    createdAt
+    updatedAt
+    owner
+  }
+}
+query ListAdministrators(
+  $filter: ModelAdministratorFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listAdministrators(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      cid
+      name
+      email
+      createdAt
+      updatedAt
+      owner
+    }
+    nextToken
+  }
+}
