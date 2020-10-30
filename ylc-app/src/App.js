@@ -1,39 +1,24 @@
-import React, { useState, useEffect } from 'react'
-import { Button } from 'antd'
-import { Amplify, Auth } from 'aws-amplify'
-import { withAuthenticator } from 'aws-amplify-react'
-import Container from './Container'
-import aws_exports from './aws-exports';
+import { Layout } from 'antd'
+import ApplicantView from './layouts/ApplicantView'
+import AdminView from './layouts/AdminView'
+import Login from './Login'
+import { Route, Switch } from 'react-router-dom'
+import './App.css';
 
-Amplify.configure(aws_exports);
+const { Content } = Layout
 
-function Profile() {
-  useEffect(() => {
-    checkUser()
-  }, [])
-  const [user, setUser] = useState({}) 
-  async function checkUser() {
-    try {
-      const data = await Auth.currentUserPoolUser()
-      const userInfo = { username: data.username, ...data.attributes, }
-      setUser(userInfo)
-    } catch (err) { console.log('error: ', err) }
-  }
-  function signOut() {
-    Auth.signOut()
-      .catch(err => console.log('error signing out: ', err))
-  }
+function App() {
   return (
-    <Container>
-      <h1>Profile</h1>
-      <h2>Username: {user.username}</h2>
-      <h3>Email: {user.email}</h3>
-      <h4>Phone: {user.phone_number}</h4>
-      <Button onClick={signOut}>Sign Out</Button>
-    </Container>
+    <div className="App">
+      <Layout>
+        <Switch>
+          <Route path='/' component={ApplicantView} exact />
+          <Route path='/login' component={Login} />
+          <Route path='/admin' component={AdminView} />
+        </Switch>
+      </Layout>
+    </div>
   );
 }
 
-export default withAuthenticator(Profile)
-
-
+export default App;

@@ -1,13 +1,24 @@
-import React, { setState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useHistory } from "react-router-dom";
 import { Input } from 'antd'
 import { Button } from 'antd';
+import './Login.css'
 
 
 const Login = () => {
     const history = useHistory()
-    const [email, setemail] = setState([])
-    const [password, setpassword] = setState([])
+    const [email, setemail] = useState([])
+    const [password, setpassword] = useState([])
+
+    const styles = {
+        container: {
+            width: '400px',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyItems: 'center'
+        }
+    }
 
     const handleChange = (e) => {
         e.target.id === 'email' && setemail(e.target.value)
@@ -16,19 +27,22 @@ const Login = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        history.push('/')
+        if (email && password) {
+            history.push('/admin')
+        }
     }
 
  
     return (
-        <>
-        <h1>Please log into your account to manage applications</h1>
+        <main style={styles.container}>
+        <h1>Are you an Admin?</h1>
+        <h3>Log In Here</h3>
         <label>Email</label>
         <Input id={'email'} onChange={handleChange}></Input>
         <label>Password</label>
         <Input id={'password'} onChange={handleChange}></Input>
-        <Button onClick={handleSubmit}></Button>
-        </>
+        <Button type='primary' onClick={handleSubmit}>Login</Button>
+        </main>
     )
 }
 

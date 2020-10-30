@@ -1,13 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import YLC from './YLC';
-import {BrowserRouter as Router} from 'react-router-dom'
+import App from './App';
+import { BrowserRouter } from 'react-router-dom'
+import 'antd/dist/antd.css'
 
 ReactDOM.render(
-  <Router>
-    <YLC />
-  </Router>,
+  <React.StrictMode>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </React.StrictMode>,
   document.getElementById('root')
 );
 
