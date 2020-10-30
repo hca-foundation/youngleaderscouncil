@@ -30,6 +30,7 @@ ylc-app/amplify/backend/amplify-meta.json
 ylc-app/amplify/backend/awscloudformation
 build/
 dist/
+package-lock.json
 node_modules/
 aws-exports.js
 awsconfiguration.json
