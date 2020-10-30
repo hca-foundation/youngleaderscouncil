@@ -1,36 +1,6 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const onCreateTag = /* GraphQL */ `
-  subscription OnCreateTag {
-    onCreateTag {
-      id
-      label
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const onUpdateTag = /* GraphQL */ `
-  subscription OnUpdateTag {
-    onUpdateTag {
-      id
-      label
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const onDeleteTag = /* GraphQL */ `
-  subscription OnDeleteTag {
-    onDeleteTag {
-      id
-      label
-      createdAt
-      updatedAt
-    }
-  }
-`;
 export const onCreateNonProfit = /* GraphQL */ `
   subscription OnCreateNonProfit {
     onCreateNonProfit {
@@ -143,6 +113,7 @@ export const onCreateStudent = /* GraphQL */ `
   subscription OnCreateStudent($owner: String) {
     onCreateStudent(owner: $owner) {
       id
+      cid
       name
       email
       premium
@@ -186,6 +157,7 @@ export const onUpdateStudent = /* GraphQL */ `
   subscription OnUpdateStudent($owner: String) {
     onUpdateStudent(owner: $owner) {
       id
+      cid
       name
       email
       premium
@@ -229,6 +201,7 @@ export const onDeleteStudent = /* GraphQL */ `
   subscription OnDeleteStudent($owner: String) {
     onDeleteStudent(owner: $owner) {
       id
+      cid
       name
       email
       premium
@@ -272,6 +245,7 @@ export const onCreateAdministrator = /* GraphQL */ `
   subscription OnCreateAdministrator($owner: String!) {
     onCreateAdministrator(owner: $owner) {
       id
+      cid
       name
       email
       createdAt
@@ -284,6 +258,7 @@ export const onUpdateAdministrator = /* GraphQL */ `
   subscription OnUpdateAdministrator($owner: String!) {
     onUpdateAdministrator(owner: $owner) {
       id
+      cid
       name
       email
       createdAt
@@ -296,6 +271,7 @@ export const onDeleteAdministrator = /* GraphQL */ `
   subscription OnDeleteAdministrator($owner: String!) {
     onDeleteAdministrator(owner: $owner) {
       id
+      cid
       name
       email
       createdAt

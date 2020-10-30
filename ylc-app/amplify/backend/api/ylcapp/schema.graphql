@@ -4,23 +4,21 @@
 
 # Maybe just freetext tags attached to non profit instead?
 # Honestly might be best to ditch tags for the MVP
-type Tag
-  @model
-  # @searchable
-  # @key(name: "byTag", fields: ["id"])
-  @auth(
-    rules: [
-      { allow: private, operations: [read] }
-      {
-        allow: groups
-        groups: ["Admin"]
-        operations: [read, create, delete, update]
-      }
-    ]
-  ) {
-  id: ID!
-  label: String!
-}
+# type Tag
+#   @model
+#   # @searchable
+#   # @key(name: "byTag", fields: ["id"])
+#   @auth(
+#     rules: [
+#       { allow: private, operations: [read] }
+#       {
+#         allow: owner, operations: [read, create, delete, update]
+#       }
+#     ]
+#   ) {
+#   id: ID!
+#   label: String!
+# }
 
 type NonProfit
   @model
@@ -29,11 +27,7 @@ type NonProfit
   @auth(
     rules: [
       { allow: private, operations: [read] }
-      {
-        allow: groups
-        groups: ["Admin"]
-        operations: [read, create, delete, update]
-      }
+      { allow: owner, operations: [read, create, delete, update] }
     ]
   ) {
   id: ID!
@@ -78,7 +72,7 @@ type NonProfit
   # BoardDemographicsHispanicLatinx: Int
 
   UniqueOrganizationURLLink: AWSURL
-  DonorEdgeStatus: String! # enum?
+  DonorEdgeStatus: String # enum?
 }
 
 type Student

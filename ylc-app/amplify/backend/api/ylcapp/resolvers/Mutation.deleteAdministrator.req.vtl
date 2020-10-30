@@ -5,26 +5,22 @@
 ## [End] Determine request authentication mode **
 ## [Start] Check authMode and execute owner/group checks **
 #if( $authMode == "userPools" )
-  ## [Start] Static Group Authorization Checks **
-  #set($isStaticGroupAuthorized = $util.defaultIfNull(
-            $isStaticGroupAuthorized, false))
-  ## Authorization rule: { allow: groups, groups: ["Admin"], groupClaim: "cognito:groups" } **
-  #set( $userGroups = $util.defaultIfNull($ctx.identity.claims.get("cognito:groups"), []) )
-  #set( $allowedGroups = ["Admin"] )
-  #foreach( $userGroup in $userGroups )
-    #if( $allowedGroups.contains($userGroup) )
-      #set( $isStaticGroupAuthorized = true )
-      #break
-    #end
-  #end
-  ## [End] Static Group Authorization Checks **
+  ## No Static Group Authorization Rules **
 
 
   #if( ! $isStaticGroupAuthorized )
     ## No dynamic group authorization rules **
 
 
-    ## No owner authorization rules **
+    ## [Start] Owner Authorization Checks **
+    #set( $ownerAuthExpressions = [] )
+    #set( $ownerAuthExpressionValues = {} )
+    #set( $ownerAuthExpressionNames = {} )
+    ## Authorization rule: { allow: owner, ownerField: "owner", identityClaim: "cognito:username" } **
+    $util.qr($ownerAuthExpressions.add("#owner0 = :identity0"))
+    $util.qr($ownerAuthExpressionNames.put("#owner0", "owner"))
+    $util.qr($ownerAuthExpressionValues.put(":identity0", $util.dynamodb.toDynamoDB($util.defaultIfNull($ctx.identity.claims.get("username"), $util.defaultIfNull($ctx.identity.claims.get("cognito:username"), "___xamznone____")))))
+    ## [End] Owner Authorization Checks **
 
 
     ## [Start] Collect Auth Condition **

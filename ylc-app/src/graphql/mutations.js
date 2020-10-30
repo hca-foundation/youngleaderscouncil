@@ -1,45 +1,6 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const createTag = /* GraphQL */ `
-  mutation CreateTag(
-    $input: CreateTagInput!
-    $condition: ModelTagConditionInput
-  ) {
-    createTag(input: $input, condition: $condition) {
-      id
-      label
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const updateTag = /* GraphQL */ `
-  mutation UpdateTag(
-    $input: UpdateTagInput!
-    $condition: ModelTagConditionInput
-  ) {
-    updateTag(input: $input, condition: $condition) {
-      id
-      label
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const deleteTag = /* GraphQL */ `
-  mutation DeleteTag(
-    $input: DeleteTagInput!
-    $condition: ModelTagConditionInput
-  ) {
-    deleteTag(input: $input, condition: $condition) {
-      id
-      label
-      createdAt
-      updatedAt
-    }
-  }
-`;
 export const createNonProfit = /* GraphQL */ `
   mutation CreateNonProfit(
     $input: CreateNonProfitInput!
@@ -164,6 +125,7 @@ export const createStudent = /* GraphQL */ `
   ) {
     createStudent(input: $input, condition: $condition) {
       id
+      cid
       name
       email
       premium
@@ -210,6 +172,7 @@ export const updateStudent = /* GraphQL */ `
   ) {
     updateStudent(input: $input, condition: $condition) {
       id
+      cid
       name
       email
       premium
@@ -256,6 +219,7 @@ export const deleteStudent = /* GraphQL */ `
   ) {
     deleteStudent(input: $input, condition: $condition) {
       id
+      cid
       name
       email
       premium
@@ -302,6 +266,7 @@ export const createAdministrator = /* GraphQL */ `
   ) {
     createAdministrator(input: $input, condition: $condition) {
       id
+      cid
       name
       email
       createdAt
@@ -317,6 +282,7 @@ export const updateAdministrator = /* GraphQL */ `
   ) {
     updateAdministrator(input: $input, condition: $condition) {
       id
+      cid
       name
       email
       createdAt
@@ -332,6 +298,7 @@ export const deleteAdministrator = /* GraphQL */ `
   ) {
     deleteAdministrator(input: $input, condition: $condition) {
       id
+      cid
       name
       email
       createdAt

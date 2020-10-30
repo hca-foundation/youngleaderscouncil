@@ -24,7 +24,15 @@
     ## No dynamic group authorization rules **
 
 
-    ## No owner authorization rules **
+    ## [Start] Owner Authorization Checks **
+    #set( $ownerAuthExpressions = [] )
+    #set( $ownerAuthExpressionValues = {} )
+    #set( $ownerAuthExpressionNames = {} )
+    ## Authorization rule: { allow: owner, ownerField: "owner", identityClaim: "cognito:username" } **
+    $util.qr($ownerAuthExpressions.add("#owner0 = :identity0"))
+    $util.qr($ownerAuthExpressionNames.put("#owner0", "owner"))
+    $util.qr($ownerAuthExpressionValues.put(":identity0", $util.dynamodb.toDynamoDB($util.defaultIfNull($ctx.identity.claims.get("username"), $util.defaultIfNull($ctx.identity.claims.get("cognito:username"), "___xamznone____")))))
+    ## [End] Owner Authorization Checks **
 
 
     ## [Start] Collect Auth Condition **
@@ -125,7 +133,7 @@
 #end
 ## Automatically set the updatedAt timestamp. **
 $util.qr($context.args.input.put("updatedAt", $util.defaultIfNull($ctx.args.input.updatedAt, $util.time.nowISO8601())))
-$util.qr($context.args.input.put("__typename", "Tag"))
+$util.qr($context.args.input.put("__typename", "Student"))
 ## Update condition if type is @versioned **
 #if( $versionedCondition )
   $util.qr($condition.put("expression", "($condition.expression) AND $versionedCondition.expression"))

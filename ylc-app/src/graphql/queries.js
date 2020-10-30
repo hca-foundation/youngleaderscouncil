@@ -1,33 +1,6 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const getTag = /* GraphQL */ `
-  query GetTag($id: ID!) {
-    getTag(id: $id) {
-      id
-      label
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const listTags = /* GraphQL */ `
-  query ListTags(
-    $filter: ModelTagFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    listTags(filter: $filter, limit: $limit, nextToken: $nextToken) {
-      items {
-        id
-        label
-        createdAt
-        updatedAt
-      }
-      nextToken
-    }
-  }
-`;
 export const getNonProfit = /* GraphQL */ `
   query GetNonProfit($id: ID!) {
     getNonProfit(id: $id) {
@@ -108,6 +81,7 @@ export const getStudent = /* GraphQL */ `
   query GetStudent($id: ID!) {
     getStudent(id: $id) {
       id
+      cid
       name
       email
       premium
@@ -156,6 +130,7 @@ export const listStudents = /* GraphQL */ `
     listStudents(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
+        cid
         name
         email
         premium
@@ -172,6 +147,7 @@ export const getAdministrator = /* GraphQL */ `
   query GetAdministrator($id: ID!) {
     getAdministrator(id: $id) {
       id
+      cid
       name
       email
       createdAt
@@ -189,6 +165,7 @@ export const listAdministrators = /* GraphQL */ `
     listAdministrators(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
+        cid
         name
         email
         createdAt
