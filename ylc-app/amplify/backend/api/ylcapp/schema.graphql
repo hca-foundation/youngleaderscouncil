@@ -78,9 +78,21 @@ type NonProfit
   DonorEdgeStatus: String # enum?
 }
 
-# type Wishlist {
+type Wishlist
+  @model
+  @auth(rules: [{ allow: owner, operations: [read, create, delete, update] }]) {
+  id: ID!
 
-# }
+  nonProfitID: ID!
+  nonProfit: [NonProfit] @connection(fields: ["nonProfitID"])
+  createDate: AWSDateTime
+
+  # demoralized user info
+  firstName: String!
+  lastName: String!
+  email: String!
+  phoneNumber: String
+}
 
 # type Student @model @auth(rules: [{ allow: owner }]) {
 #   id: ID!

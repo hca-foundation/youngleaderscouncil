@@ -96,3 +96,45 @@ export const listNonProfits = /* GraphQL */ `
     }
   }
 `;
+export const getWishlist = /* GraphQL */ `
+  query GetWishlist($id: ID!) {
+    getWishlist(id: $id) {
+      id
+      nonProfitID
+      nonProfit {
+        nextToken
+      }
+      createDate
+      firstName
+      lastName
+      email
+      phoneNumber
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const listWishlists = /* GraphQL */ `
+  query ListWishlists(
+    $filter: ModelWishlistFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listWishlists(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        nonProfitID
+        createDate
+        firstName
+        lastName
+        email
+        phoneNumber
+        createdAt
+        updatedAt
+        owner
+      }
+      nextToken
+    }
+  }
+`;
