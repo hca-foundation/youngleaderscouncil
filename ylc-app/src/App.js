@@ -2,6 +2,13 @@ import { Layout } from 'antd'
 import ApplicantView from './layouts/ApplicantView'
 import AdminView from './layouts/AdminView'
 import { Route, Switch } from 'react-router-dom'
+import API from '@aws-amplify/api';
+import awsconfig from './aws-exports';
+import Amplify, { DataStore } from 'aws-amplify';
+
+API.configure(awsconfig);
+Amplify.configure(awsconfig);
+DataStore.configure();
 import './App.css';
 
 const { Content } = Layout
