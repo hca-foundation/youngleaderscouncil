@@ -9,12 +9,30 @@ const columns = [
         dataIndex: 'orgName',
         key: 'orgName',
         defaultSortOrder: 'ascend',
-        sorter: (a, b) => a.orgName.localeCompare(b.orgName)
+        sorter: {
+          compare: (a, b) => a.orgName.localeCompare(b.orgName),
+          multiple: 2
+        },
       },
       {
         title: 'Description',
         dataIndex: 'description',
         key: 'description',
+      },
+      {
+        title: 'Impact Area',
+        dataIndex: 'impactArea',
+        key: 'orgName',
+        sorter: {
+          compare: (a, b) => a.impactArea.localeCompare(b.impactArea),
+          sortDirections: ['descend', 'ascend'],
+          multiple: 1
+        }
+      },
+      {
+        title: 'Term Length',
+        dataIndex: 'boardTerm',
+        key: 'orgName',
       },
       {
         title: 'Website',
