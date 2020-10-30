@@ -8,12 +8,8 @@ export const createNonProfit = /* GraphQL */ `
   ) {
     createNonProfit(input: $input, condition: $condition) {
       id
-      partnered
-      premium
-      occupiedID
-      occupied {
-        nextToken
-      }
+      IsPartner
+      RequiresApproval
       OrganizationLegalName
       County
       MissionStatement
@@ -33,6 +29,18 @@ export const createNonProfit = /* GraphQL */ `
       PercentOfBoardMakingInKindContributions
       WrittenBoardSelectionCriteria
       WrittenConflictOfInterestPolicy
+      BoardDemographicsAfricanAmericanBlack
+      BoardDemographicsAsian
+      BoardDemographicsWhite
+      BoardDemographicsHispanicLatinx
+      BoardDemographicsMultiracial
+      BoardDemographicsNativeAmerican
+      BoardDemographicsPacificIslander
+      BoardDemographicsOtherEthnicity
+      BoardDemographicsMale
+      BoardDemographicsFemale
+      BoardDemographicsSelfDescribe
+      BoardDemographicsPreferNotToSay
       UniqueOrganizationURLLink
       DonorEdgeStatus
       createdAt
@@ -47,12 +55,8 @@ export const updateNonProfit = /* GraphQL */ `
   ) {
     updateNonProfit(input: $input, condition: $condition) {
       id
-      partnered
-      premium
-      occupiedID
-      occupied {
-        nextToken
-      }
+      IsPartner
+      RequiresApproval
       OrganizationLegalName
       County
       MissionStatement
@@ -72,6 +76,18 @@ export const updateNonProfit = /* GraphQL */ `
       PercentOfBoardMakingInKindContributions
       WrittenBoardSelectionCriteria
       WrittenConflictOfInterestPolicy
+      BoardDemographicsAfricanAmericanBlack
+      BoardDemographicsAsian
+      BoardDemographicsWhite
+      BoardDemographicsHispanicLatinx
+      BoardDemographicsMultiracial
+      BoardDemographicsNativeAmerican
+      BoardDemographicsPacificIslander
+      BoardDemographicsOtherEthnicity
+      BoardDemographicsMale
+      BoardDemographicsFemale
+      BoardDemographicsSelfDescribe
+      BoardDemographicsPreferNotToSay
       UniqueOrganizationURLLink
       DonorEdgeStatus
       createdAt
@@ -86,12 +102,8 @@ export const deleteNonProfit = /* GraphQL */ `
   ) {
     deleteNonProfit(input: $input, condition: $condition) {
       id
-      partnered
-      premium
-      occupiedID
-      occupied {
-        nextToken
-      }
+      IsPartner
+      RequiresApproval
       OrganizationLegalName
       County
       MissionStatement
@@ -111,199 +123,22 @@ export const deleteNonProfit = /* GraphQL */ `
       PercentOfBoardMakingInKindContributions
       WrittenBoardSelectionCriteria
       WrittenConflictOfInterestPolicy
+      BoardDemographicsAfricanAmericanBlack
+      BoardDemographicsAsian
+      BoardDemographicsWhite
+      BoardDemographicsHispanicLatinx
+      BoardDemographicsMultiracial
+      BoardDemographicsNativeAmerican
+      BoardDemographicsPacificIslander
+      BoardDemographicsOtherEthnicity
+      BoardDemographicsMale
+      BoardDemographicsFemale
+      BoardDemographicsSelfDescribe
+      BoardDemographicsPreferNotToSay
       UniqueOrganizationURLLink
       DonorEdgeStatus
       createdAt
       updatedAt
-    }
-  }
-`;
-export const createStudent = /* GraphQL */ `
-  mutation CreateStudent(
-    $input: CreateStudentInput!
-    $condition: ModelStudentConditionInput
-  ) {
-    createStudent(input: $input, condition: $condition) {
-      id
-      cid
-      name
-      email
-      premium
-      cartID
-      cart {
-        id
-        partnered
-        premium
-        occupiedID
-        OrganizationLegalName
-        County
-        MissionStatement
-        ImpactArea
-        Website
-        CurrentFYEndDate
-        CEOFirstName
-        CEOLastName
-        CEOEmail
-        BoardChairFirstName
-        BoardChairLastName
-        BoardChairEmail
-        BoardTermLengths
-        BoardTermLimits
-        WhatMakesYourBoardUnique
-        PercentOfBoardMakingMonetaryContributions
-        PercentOfBoardMakingInKindContributions
-        WrittenBoardSelectionCriteria
-        WrittenConflictOfInterestPolicy
-        UniqueOrganizationURLLink
-        DonorEdgeStatus
-        createdAt
-        updatedAt
-      }
-      createdAt
-      updatedAt
-      owner
-    }
-  }
-`;
-export const updateStudent = /* GraphQL */ `
-  mutation UpdateStudent(
-    $input: UpdateStudentInput!
-    $condition: ModelStudentConditionInput
-  ) {
-    updateStudent(input: $input, condition: $condition) {
-      id
-      cid
-      name
-      email
-      premium
-      cartID
-      cart {
-        id
-        partnered
-        premium
-        occupiedID
-        OrganizationLegalName
-        County
-        MissionStatement
-        ImpactArea
-        Website
-        CurrentFYEndDate
-        CEOFirstName
-        CEOLastName
-        CEOEmail
-        BoardChairFirstName
-        BoardChairLastName
-        BoardChairEmail
-        BoardTermLengths
-        BoardTermLimits
-        WhatMakesYourBoardUnique
-        PercentOfBoardMakingMonetaryContributions
-        PercentOfBoardMakingInKindContributions
-        WrittenBoardSelectionCriteria
-        WrittenConflictOfInterestPolicy
-        UniqueOrganizationURLLink
-        DonorEdgeStatus
-        createdAt
-        updatedAt
-      }
-      createdAt
-      updatedAt
-      owner
-    }
-  }
-`;
-export const deleteStudent = /* GraphQL */ `
-  mutation DeleteStudent(
-    $input: DeleteStudentInput!
-    $condition: ModelStudentConditionInput
-  ) {
-    deleteStudent(input: $input, condition: $condition) {
-      id
-      cid
-      name
-      email
-      premium
-      cartID
-      cart {
-        id
-        partnered
-        premium
-        occupiedID
-        OrganizationLegalName
-        County
-        MissionStatement
-        ImpactArea
-        Website
-        CurrentFYEndDate
-        CEOFirstName
-        CEOLastName
-        CEOEmail
-        BoardChairFirstName
-        BoardChairLastName
-        BoardChairEmail
-        BoardTermLengths
-        BoardTermLimits
-        WhatMakesYourBoardUnique
-        PercentOfBoardMakingMonetaryContributions
-        PercentOfBoardMakingInKindContributions
-        WrittenBoardSelectionCriteria
-        WrittenConflictOfInterestPolicy
-        UniqueOrganizationURLLink
-        DonorEdgeStatus
-        createdAt
-        updatedAt
-      }
-      createdAt
-      updatedAt
-      owner
-    }
-  }
-`;
-export const createAdministrator = /* GraphQL */ `
-  mutation CreateAdministrator(
-    $input: CreateAdministratorInput!
-    $condition: ModelAdministratorConditionInput
-  ) {
-    createAdministrator(input: $input, condition: $condition) {
-      id
-      cid
-      name
-      email
-      createdAt
-      updatedAt
-      owner
-    }
-  }
-`;
-export const updateAdministrator = /* GraphQL */ `
-  mutation UpdateAdministrator(
-    $input: UpdateAdministratorInput!
-    $condition: ModelAdministratorConditionInput
-  ) {
-    updateAdministrator(input: $input, condition: $condition) {
-      id
-      cid
-      name
-      email
-      createdAt
-      updatedAt
-      owner
-    }
-  }
-`;
-export const deleteAdministrator = /* GraphQL */ `
-  mutation DeleteAdministrator(
-    $input: DeleteAdministratorInput!
-    $condition: ModelAdministratorConditionInput
-  ) {
-    deleteAdministrator(input: $input, condition: $condition) {
-      id
-      cid
-      name
-      email
-      createdAt
-      updatedAt
-      owner
     }
   }
 `;

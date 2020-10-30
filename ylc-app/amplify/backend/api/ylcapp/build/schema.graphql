@@ -1,9 +1,7 @@
 type NonProfit {
   id: ID!
-  partnered: Boolean!
-  premium: Boolean!
-  occupiedID: ID!
-  occupied(filter: ModelStudentFilterInput, sortDirection: ModelSortDirection, limit: Int, nextToken: String): ModelStudentConnection
+  IsPartner: Boolean!
+  RequiresApproval: Boolean!
   OrganizationLegalName: String
   County: String
   MissionStatement: String
@@ -23,33 +21,22 @@ type NonProfit {
   PercentOfBoardMakingInKindContributions: Int
   WrittenBoardSelectionCriteria: String
   WrittenConflictOfInterestPolicy: String
+  BoardDemographicsAfricanAmericanBlack: Int
+  BoardDemographicsAsian: Int
+  BoardDemographicsWhite: Int
+  BoardDemographicsHispanicLatinx: Int
+  BoardDemographicsMultiracial: Int
+  BoardDemographicsNativeAmerican: Int
+  BoardDemographicsPacificIslander: Int
+  BoardDemographicsOtherEthnicity: String
+  BoardDemographicsMale: Int
+  BoardDemographicsFemale: Int
+  BoardDemographicsSelfDescribe: Int
+  BoardDemographicsPreferNotToSay: Int
   UniqueOrganizationURLLink: AWSURL
   DonorEdgeStatus: String
   createdAt: AWSDateTime!
   updatedAt: AWSDateTime!
-}
-
-type Student {
-  id: ID!
-  cid: ID!
-  name: String!
-  email: AWSEmail!
-  premium: Boolean!
-  cartID: ID!
-  cart: NonProfit
-  createdAt: AWSDateTime!
-  updatedAt: AWSDateTime!
-  owner: String
-}
-
-type Administrator {
-  id: ID!
-  cid: ID!
-  name: String!
-  email: AWSEmail!
-  createdAt: AWSDateTime!
-  updatedAt: AWSDateTime!
-  owner: String
 }
 
 enum ModelSortDirection {
@@ -137,9 +124,8 @@ input ModelSizeInput {
 
 input ModelNonProfitFilterInput {
   id: ModelIDInput
-  partnered: ModelBooleanInput
-  premium: ModelBooleanInput
-  occupiedID: ModelIDInput
+  IsPartner: ModelBooleanInput
+  RequiresApproval: ModelBooleanInput
   OrganizationLegalName: ModelStringInput
   County: ModelStringInput
   MissionStatement: ModelStringInput
@@ -159,6 +145,18 @@ input ModelNonProfitFilterInput {
   PercentOfBoardMakingInKindContributions: ModelIntInput
   WrittenBoardSelectionCriteria: ModelStringInput
   WrittenConflictOfInterestPolicy: ModelStringInput
+  BoardDemographicsAfricanAmericanBlack: ModelIntInput
+  BoardDemographicsAsian: ModelIntInput
+  BoardDemographicsWhite: ModelIntInput
+  BoardDemographicsHispanicLatinx: ModelIntInput
+  BoardDemographicsMultiracial: ModelIntInput
+  BoardDemographicsNativeAmerican: ModelIntInput
+  BoardDemographicsPacificIslander: ModelIntInput
+  BoardDemographicsOtherEthnicity: ModelStringInput
+  BoardDemographicsMale: ModelIntInput
+  BoardDemographicsFemale: ModelIntInput
+  BoardDemographicsSelfDescribe: ModelIntInput
+  BoardDemographicsPreferNotToSay: ModelIntInput
   UniqueOrganizationURLLink: ModelStringInput
   DonorEdgeStatus: ModelStringInput
   and: [ModelNonProfitFilterInput]
@@ -182,17 +180,12 @@ enum ModelAttributeTypes {
 type Query {
   getNonProfit(id: ID!): NonProfit
   listNonProfits(filter: ModelNonProfitFilterInput, limit: Int, nextToken: String): ModelNonProfitConnection
-  getStudent(id: ID!): Student
-  listStudents(filter: ModelStudentFilterInput, limit: Int, nextToken: String): ModelStudentConnection
-  getAdministrator(id: ID!): Administrator
-  listAdministrators(filter: ModelAdministratorFilterInput, limit: Int, nextToken: String): ModelAdministratorConnection
 }
 
 input CreateNonProfitInput {
   id: ID
-  partnered: Boolean!
-  premium: Boolean!
-  occupiedID: ID!
+  IsPartner: Boolean!
+  RequiresApproval: Boolean!
   OrganizationLegalName: String
   County: String
   MissionStatement: String
@@ -212,15 +205,26 @@ input CreateNonProfitInput {
   PercentOfBoardMakingInKindContributions: Int
   WrittenBoardSelectionCriteria: String
   WrittenConflictOfInterestPolicy: String
+  BoardDemographicsAfricanAmericanBlack: Int
+  BoardDemographicsAsian: Int
+  BoardDemographicsWhite: Int
+  BoardDemographicsHispanicLatinx: Int
+  BoardDemographicsMultiracial: Int
+  BoardDemographicsNativeAmerican: Int
+  BoardDemographicsPacificIslander: Int
+  BoardDemographicsOtherEthnicity: String
+  BoardDemographicsMale: Int
+  BoardDemographicsFemale: Int
+  BoardDemographicsSelfDescribe: Int
+  BoardDemographicsPreferNotToSay: Int
   UniqueOrganizationURLLink: AWSURL
   DonorEdgeStatus: String
 }
 
 input UpdateNonProfitInput {
   id: ID!
-  partnered: Boolean
-  premium: Boolean
-  occupiedID: ID
+  IsPartner: Boolean
+  RequiresApproval: Boolean
   OrganizationLegalName: String
   County: String
   MissionStatement: String
@@ -240,6 +244,18 @@ input UpdateNonProfitInput {
   PercentOfBoardMakingInKindContributions: Int
   WrittenBoardSelectionCriteria: String
   WrittenConflictOfInterestPolicy: String
+  BoardDemographicsAfricanAmericanBlack: Int
+  BoardDemographicsAsian: Int
+  BoardDemographicsWhite: Int
+  BoardDemographicsHispanicLatinx: Int
+  BoardDemographicsMultiracial: Int
+  BoardDemographicsNativeAmerican: Int
+  BoardDemographicsPacificIslander: Int
+  BoardDemographicsOtherEthnicity: String
+  BoardDemographicsMale: Int
+  BoardDemographicsFemale: Int
+  BoardDemographicsSelfDescribe: Int
+  BoardDemographicsPreferNotToSay: Int
   UniqueOrganizationURLLink: AWSURL
   DonorEdgeStatus: String
 }
@@ -252,18 +268,11 @@ type Mutation {
   createNonProfit(input: CreateNonProfitInput!, condition: ModelNonProfitConditionInput): NonProfit
   updateNonProfit(input: UpdateNonProfitInput!, condition: ModelNonProfitConditionInput): NonProfit
   deleteNonProfit(input: DeleteNonProfitInput!, condition: ModelNonProfitConditionInput): NonProfit
-  createStudent(input: CreateStudentInput!, condition: ModelStudentConditionInput): Student
-  updateStudent(input: UpdateStudentInput!, condition: ModelStudentConditionInput): Student
-  deleteStudent(input: DeleteStudentInput!, condition: ModelStudentConditionInput): Student
-  createAdministrator(input: CreateAdministratorInput!, condition: ModelAdministratorConditionInput): Administrator
-  updateAdministrator(input: UpdateAdministratorInput!, condition: ModelAdministratorConditionInput): Administrator
-  deleteAdministrator(input: DeleteAdministratorInput!, condition: ModelAdministratorConditionInput): Administrator
 }
 
 input ModelNonProfitConditionInput {
-  partnered: ModelBooleanInput
-  premium: ModelBooleanInput
-  occupiedID: ModelIDInput
+  IsPartner: ModelBooleanInput
+  RequiresApproval: ModelBooleanInput
   OrganizationLegalName: ModelStringInput
   County: ModelStringInput
   MissionStatement: ModelStringInput
@@ -283,6 +292,18 @@ input ModelNonProfitConditionInput {
   PercentOfBoardMakingInKindContributions: ModelIntInput
   WrittenBoardSelectionCriteria: ModelStringInput
   WrittenConflictOfInterestPolicy: ModelStringInput
+  BoardDemographicsAfricanAmericanBlack: ModelIntInput
+  BoardDemographicsAsian: ModelIntInput
+  BoardDemographicsWhite: ModelIntInput
+  BoardDemographicsHispanicLatinx: ModelIntInput
+  BoardDemographicsMultiracial: ModelIntInput
+  BoardDemographicsNativeAmerican: ModelIntInput
+  BoardDemographicsPacificIslander: ModelIntInput
+  BoardDemographicsOtherEthnicity: ModelStringInput
+  BoardDemographicsMale: ModelIntInput
+  BoardDemographicsFemale: ModelIntInput
+  BoardDemographicsSelfDescribe: ModelIntInput
+  BoardDemographicsPreferNotToSay: ModelIntInput
   UniqueOrganizationURLLink: ModelStringInput
   DonorEdgeStatus: ModelStringInput
   and: [ModelNonProfitConditionInput]
@@ -294,102 +315,4 @@ type Subscription {
   onCreateNonProfit: NonProfit @aws_subscribe(mutations: ["createNonProfit"])
   onUpdateNonProfit: NonProfit @aws_subscribe(mutations: ["updateNonProfit"])
   onDeleteNonProfit: NonProfit @aws_subscribe(mutations: ["deleteNonProfit"])
-  onCreateStudent(owner: String): Student @aws_subscribe(mutations: ["createStudent"])
-  onUpdateStudent(owner: String): Student @aws_subscribe(mutations: ["updateStudent"])
-  onDeleteStudent(owner: String): Student @aws_subscribe(mutations: ["deleteStudent"])
-  onCreateAdministrator(owner: String!): Administrator @aws_subscribe(mutations: ["createAdministrator"])
-  onUpdateAdministrator(owner: String!): Administrator @aws_subscribe(mutations: ["updateAdministrator"])
-  onDeleteAdministrator(owner: String!): Administrator @aws_subscribe(mutations: ["deleteAdministrator"])
-}
-
-type ModelStudentConnection {
-  items: [Student]
-  nextToken: String
-}
-
-input ModelStudentFilterInput {
-  id: ModelIDInput
-  cid: ModelIDInput
-  name: ModelStringInput
-  email: ModelStringInput
-  premium: ModelBooleanInput
-  cartID: ModelIDInput
-  and: [ModelStudentFilterInput]
-  or: [ModelStudentFilterInput]
-  not: ModelStudentFilterInput
-}
-
-input CreateStudentInput {
-  id: ID
-  cid: ID!
-  name: String!
-  email: AWSEmail!
-  premium: Boolean!
-  cartID: ID!
-}
-
-input UpdateStudentInput {
-  id: ID!
-  cid: ID
-  name: String
-  email: AWSEmail
-  premium: Boolean
-  cartID: ID
-}
-
-input DeleteStudentInput {
-  id: ID
-}
-
-input ModelStudentConditionInput {
-  cid: ModelIDInput
-  name: ModelStringInput
-  email: ModelStringInput
-  premium: ModelBooleanInput
-  cartID: ModelIDInput
-  and: [ModelStudentConditionInput]
-  or: [ModelStudentConditionInput]
-  not: ModelStudentConditionInput
-}
-
-type ModelAdministratorConnection {
-  items: [Administrator]
-  nextToken: String
-}
-
-input ModelAdministratorFilterInput {
-  id: ModelIDInput
-  cid: ModelIDInput
-  name: ModelStringInput
-  email: ModelStringInput
-  and: [ModelAdministratorFilterInput]
-  or: [ModelAdministratorFilterInput]
-  not: ModelAdministratorFilterInput
-}
-
-input CreateAdministratorInput {
-  id: ID
-  cid: ID!
-  name: String!
-  email: AWSEmail!
-}
-
-input UpdateAdministratorInput {
-  id: ID!
-  cid: ID
-  name: String
-  email: AWSEmail
-}
-
-input DeleteAdministratorInput {
-  id: ID
-}
-
-input ModelAdministratorConditionInput {
-  cid: ModelIDInput
-  name: ModelStringInput
-  email: ModelStringInput
-  and: [ModelAdministratorConditionInput]
-  or: [ModelAdministratorConditionInput]
-  not: ModelAdministratorConditionInput
 }

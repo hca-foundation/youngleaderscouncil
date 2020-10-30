@@ -4,23 +4,21 @@
 
 # Maybe just freetext tags attached to non profit instead?
 # Honestly might be best to ditch tags for the MVP
-type Tag
-  @model
-  # @searchable
-  # @key(name: "byTag", fields: ["id"])
-  @auth(
-    rules: [
-      { allow: private, operations: [read] }
-      {
-        allow: groups
-        groups: ["Admin"]
-        operations: [read, create, delete, update]
-      }
-    ]
-  ) {
-  id: ID!
-  label: String!
-}
+# type Tag
+#   @model
+#   # @searchable
+#   # @key(name: "byTag", fields: ["id"])
+#   @auth(
+#     rules: [
+#       { allow: private, operations: [read] }
+#       {
+#         allow: owner, operations: [read, create, delete, update]
+#       }
+#     ]
+#   ) {
+#   id: ID!
+#   label: String!
+# }
 
 type NonProfit
   @model
@@ -29,24 +27,16 @@ type NonProfit
   @auth(
     rules: [
       { allow: private, operations: [read] }
-      {
-        allow: groups
-        groups: ["Admin"]
-        operations: [read, create, delete, update]
-      }
+      { allow: owner, operations: [read, create, delete, update] }
     ]
   ) {
   id: ID!
-  partnered: Boolean!
-  premium: Boolean!
 
-  # unsupported secondary index for local dev :(
-  # has many -- OR make this m to m for bi-directional search?
-  # tags: [Tag!] @connection(fields: ["tagIDs"])
+  IsPartner: Boolean!
+  RequiresApproval: Boolean!
 
-  # has one
-  occupiedID: ID!
-  occupied: [Student] @connection(fields: ["occupiedID"])
+  # occupiedID: ID!
+  # occupied: [Student] @connection(fields: ["occupiedID"])
 
   # bunch of extra fields from excel file
   # find out required fields
@@ -70,50 +60,50 @@ type NonProfit
   PercentOfBoardMakingInKindContributions: Int
   WrittenBoardSelectionCriteria: String # enum?
   WrittenConflictOfInterestPolicy: String # enum?
-  # separate entity
-  # BoardDemographicsAfricanAmericanBlack: Int
-  # BoardDemographicsAsian: Int
-  # BoardDemographicsWhite: Int
-  # BoardDemographicsHispanicLatinx: Int
-  # BoardDemographicsHispanicLatinx: Int
+  BoardDemographicsAfricanAmericanBlack: Int
+  BoardDemographicsAsian: Int
+  BoardDemographicsWhite: Int
+  BoardDemographicsHispanicLatinx: Int
+  BoardDemographicsMultiracial: Int
+  BoardDemographicsNativeAmerican: Int
+  BoardDemographicsPacificIslander: Int
+  BoardDemographicsOtherEthnicity: String
+
+  BoardDemographicsMale: Int
+  BoardDemographicsFemale: Int
+  BoardDemographicsSelfDescribe: Int
+  BoardDemographicsPreferNotToSay: Int
 
   UniqueOrganizationURLLink: AWSURL
-  DonorEdgeStatus: String! # enum?
+  DonorEdgeStatus: String # enum?
 }
 
-type Student
-  @model
-  @auth(
-    rules: [
-      { allow: owner }
-      {
-        allow: groups
-        groups: ["Admin"]
-        operations: [read, create, delete, update]
-      }
-    ]
-  ) {
-  id: ID!
-  cid: ID! # the cognito user id?
-  name: String!
-  email: AWSEmail!
-  premium: Boolean!
+# type Wishlist {
 
-  # unsupported secondary index for local dev :(
-  # has many
-  # wishlist: [NonProfit] @connection(keyName: "byNonProfit", fields: ["id"])
+# }
 
-  # has one
-  cartID: ID!
-  cart: NonProfit @connection(fields: ["cartID"])
-}
+# type Student @model @auth(rules: [{ allow: owner }]) {
+#   id: ID!
+#   cid: ID # the cognito user id?
+#   name: String!
+#   email: AWSEmail!
+#   premium: Boolean!
 
-type Administrator @model @auth(rules: [{ allow: owner }]) {
-  id: ID!
-  cid: ID! # the cognito user id?
-  name: String!
-  email: AWSEmail!
-}
+#   # unsupported secondary index for local dev :(
+#   # has many
+#   # wishlist: [NonProfit] @connection(keyName: "byNonProfit", fields: ["id"])
+
+#   # has one
+#   cartID: ID!
+#   cart: NonProfit @connection(fields: ["cartID"])
+# }
+
+# type Administrator @model @auth(rules: [{ allow: owner }]) {
+#   id: ID!
+#   cid: ID # the cognito user id?
+#   name: String!
+#   email: AWSEmail!
+# }
 
 # email this out? or store in database for viewing in application
 # input ApprovalInput {
