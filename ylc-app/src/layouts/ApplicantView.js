@@ -25,6 +25,7 @@ function ApplicantView() {
                     that we partner with. If you're interested in serving on the board, click the "Connect" 
                     button and provide your information.
                 </p>
+                {/* TODO: most likely switch to data tables lib instead of mapped div */}
                 {staticNonProfits.map((nonProfit, i) => <NonProfitRow key={i} info={nonProfit} />)}
             </div>
         </Content>
